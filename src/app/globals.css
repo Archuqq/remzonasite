@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* Дизайн-токены по docs/design-spec.md. Классы: bg-bg, bg-surface, text-ink, text-muted, border-line, bg-accent, bg-signal, bg-dark, bg-section-alt, rounded-md, rounded-lg, font-sans, font-serif */
+@theme inline {
+  --color-bg: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-ink: #15191c;
+  --color-muted: #687078;
+  --color-line: #e5e7e8;
+  --color-accent: #b5a98a;
+  --color-signal: #c8893f;
+  --color-dark: #151a1d;
+  --color-section-alt: #f2f2f0;
+
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-cormorant);
+
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --container-site: 1360px;
+}
+
+/* Контейнер: max 1360 px, боковые отступы из спецификации */
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-site);
+  padding-inline: 20px;
+
+  @variant md {
+    padding-inline: 32px;
+  }
+
+  @variant lg {
+    padding-inline: 40px;
+  }
+
+  @variant xl {
+    padding-inline: 60px;
+  }
+
+  @media (min-width: 1440px) {
+    padding-inline: 80px;
+  }
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+}
+
+/* Конструктор Яндекс.Карт задаёт 763×407 inline; растягиваем его внутри адаптивного host. */
+[data-remzona-map-host] iframe,
+[data-remzona-map-host] > div {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+}
+
+/* Якоря под sticky-шапку (~72–84 px из спецификации) */
+[id] {
+  scroll-margin-top: 84px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal-ready="true"] {
+    transition:
+      opacity 500ms ease-out,
+      transform 500ms ease-out;
+  }
+
+  [data-reveal-ready="true"]:not([data-reveal-visible="true"]) {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

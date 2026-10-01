@@ -1,0 +1,1 @@
+export const HERO_BLUR_DATA_URL = "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQBACdASoYAA4APwFwrk+rJqQiMAgBYCAJaQAAX5fHnX1+Sr1F7Ta+AAD+lGc2mFiZcl5+jNudPTqaMOaq4uz6uvOTpJxTazFncHimD9EkdDNh5AAAAA==";

@@ -1,0 +1,2 @@
+export const YANDEX_MAP_CONSTRUCTOR_URL =
+  "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Afbeb3bf4990e6598e34b2b44941b30ec84f1a3ea38209c27403d923ae0c0887e&width=763&height=407&lang=ru_RU&scroll=true";
