@@ -71,6 +71,30 @@ async function main() {
     ),
     true,
   );
+  assert.equal(
+    csrf.isSameOriginMutation(
+      new Headers({
+        origin: "https://remzona.example",
+        host: "127.0.0.1:3000",
+        "x-forwarded-host": "remzona.example",
+        "x-forwarded-proto": "https",
+      }),
+      "https://www.remzona.example",
+    ),
+    true,
+  );
+  assert.equal(
+    csrf.isSameOriginMutation(
+      new Headers({
+        origin: "https://attacker.example",
+        host: "127.0.0.1:3000",
+        "x-forwarded-host": "remzona.example",
+        "x-forwarded-proto": "https",
+      }),
+      "https://www.remzona.example",
+    ),
+    false,
+  );
   const originalNodeEnv = process.env.NODE_ENV;
   try {
     Reflect.set(process.env, "NODE_ENV", "development");

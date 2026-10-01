@@ -15,7 +15,29 @@ export function isSameOriginMutation(
   if (originHeader) {
     try {
       const origin = new URL(originHeader);
-      if (origin.origin !== expected.origin) {
+      const forwardedHost = requestHeaders
+        .get("x-forwarded-host")
+        ?.split(",")[0]
+        ?.trim();
+      const forwardedProto = requestHeaders
+        .get("x-forwarded-proto")
+        ?.split(",")[0]
+        ?.trim();
+      const requestHost = forwardedHost || requestHeaders.get("host");
+      const requestProtocol = forwardedProto || expected.protocol.slice(0, -1);
+      let forwardedOrigin: string | null = null;
+
+      if (requestHost) {
+        try {
+          forwardedOrigin = new URL(
+            `${requestProtocol}://${requestHost}`,
+          ).origin;
+        } catch {
+          return false;
+        }
+      }
+
+      if (origin.origin !== expected.origin && origin.origin !== forwardedOrigin) {
         const localHosts = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
         const isLocalDevelopmentOrigin =
           process.env.NODE_ENV === "development" &&
