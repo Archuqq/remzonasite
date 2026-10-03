@@ -21,27 +21,27 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-bg">
-      <header className="border-b border-line bg-surface">
+    <div className="admin-theme min-h-screen bg-bg text-ink">
+      <header className="border-b border-site-accent/40 bg-surface">
         <div className="container-site flex min-h-18 items-center justify-between gap-6">
           <Link
-            className="font-serif text-2xl font-semibold tracking-widest text-ink"
+            className="font-serif text-2xl font-semibold tracking-widest text-site-text transition-colors hover:text-site-accent"
             href="/admin"
           >
-            РЕМЗОНА
+            РЕМ<span className="text-site-accent">ЗОНА</span>
           </Link>
           <nav
             aria-label="Административная навигация"
             className="flex items-center gap-2 sm:gap-5"
           >
             <Link
-              className="min-h-11 px-3 py-3 text-sm text-ink hover:underline"
+              className="min-h-11 px-3 py-3 text-sm text-ink transition-colors hover:text-site-accent"
               href="/admin/services"
             >
               Услуги
             </Link>
             <Link
-              className="min-h-11 px-3 py-3 text-sm text-ink hover:underline"
+              className="min-h-11 px-3 py-3 text-sm text-ink transition-colors hover:text-site-accent"
               href="/admin/settings"
             >
               Настройки

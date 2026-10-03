@@ -16,7 +16,7 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const siteTitle = "РЕМЗОНА — автосервис в Серпухове";
+const siteTitle = "ДИЗЕЛЬ СЕРВИС — автосервис в Серпухове";
 const siteDescription =
   "Диагностика, плановое ТО и ремонт любых иномарок и отечественных авто. Называем цену до начала работ — без сюрпризов в чеке.";
 
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     url: env.SITE_URL,
-    siteName: "РЕМЗОНА",
+    siteName: "ДИЗЕЛЬ СЕРВИС",
     locale: "ru_RU",
     type: "website",
     images: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         url: "/images/hero-1600.webp",
         width: 1600,
         height: 901,
-        alt: "Mercedes в автосервисе РЕМЗОНА",
+        alt: "Mercedes в автосервисе ДИЗЕЛЬ СЕРВИС",
       },
     ],
   },

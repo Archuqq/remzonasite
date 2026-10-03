@@ -2,7 +2,10 @@ import { ArrowUpRight, MapPin } from "lucide-react";
 import { MapEmbed } from "@/components/site/MapEmbed";
 import { Icon } from "@/components/ui/Icon";
 import { PhoneLink } from "@/components/ui/PhoneLink";
-import { YANDEX_MAP_CONSTRUCTOR_URL } from "@/lib/map";
+import {
+  YANDEX_MAP_CONSTRUCTOR_URL,
+  YANDEX_MAP_LOCATION_URL,
+} from "@/lib/map";
 import type { SiteSettings } from "@/lib/settings";
 
 type MapSectionProps = {
@@ -10,23 +13,26 @@ type MapSectionProps = {
 };
 
 export function MapSection({ settings }: MapSectionProps) {
-  const mapSearchUrl = `https://yandex.ru/maps/?mode=search&text=${encodeURIComponent(settings.address)}`;
-
   return (
-    <section className="bg-bg" id="contacts">
-      <div className="container-site py-20 sm:py-24">
+    <section className="bg-site-bg" id="contacts">
+      <div className="container-site py-12 sm:py-16">
+        <header className="mb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-site-accent">
+            Контакты
+          </p>
+          <h2 className="mt-2 font-serif text-3xl font-semibold text-site-text sm:text-4xl">
+            Приезжайте в ДИЗЕЛЬ СЕРВИС
+          </h2>
+        </header>
         <div className="relative flex flex-col">
           <MapEmbed
-            fallbackUrl={mapSearchUrl}
+            fallbackUrl={YANDEX_MAP_LOCATION_URL}
             mapUrl={YANDEX_MAP_CONSTRUCTOR_URL}
           />
-          <aside className="order-first z-10 -mb-8 mx-4 rounded-lg border border-line bg-surface p-6 shadow-[0_12px_32px_rgba(21,25,28,0.08)] sm:mx-8 sm:p-8 lg:absolute lg:left-8 lg:top-8 lg:order-none lg:mb-0 lg:w-[340px] xl:left-12">
-            <h2 className="font-serif text-3xl font-medium text-ink">
-              Наш сервис на карте
-            </h2>
+          <aside className="order-first z-10 -mb-8 mx-4 rounded-md border border-white/10 bg-surface p-5 sm:mx-8 sm:p-7 lg:absolute lg:left-8 lg:top-8 lg:order-none lg:mb-0 lg:w-[340px] xl:left-12">
             <a
-              className="mt-5 flex min-h-11 items-start gap-2 text-sm leading-6 text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-              href={mapSearchUrl}
+              className="flex min-h-11 items-start gap-2 text-sm leading-6 text-site-text hover:text-site-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-site-accent"
+              href={YANDEX_MAP_LOCATION_URL}
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -34,18 +40,22 @@ export function MapSection({ settings }: MapSectionProps) {
               <span>{settings.address}</span>
             </a>
             <PhoneLink
-              className="mt-2 text-ink"
+              className="mt-2 text-site-text"
               phone={settings.phone}
               phoneHref={settings.phoneHref}
             />
-            <p className="mt-4 text-sm leading-6 text-muted">
+            <p className="mt-3 text-sm leading-6 text-site-muted">
               {settings.hoursWeekdays}
-              <br />
-              {settings.hoursWeekend}
+              {settings.hoursWeekend ? (
+                <>
+                  <br />
+                  {settings.hoursWeekend}
+                </>
+              ) : null}
             </p>
             <a
-              className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-md bg-ink px-5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
-              href={mapSearchUrl}
+              className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-md border border-site-accent bg-site-accent px-4 text-sm font-bold text-white transition-colors hover:bg-transparent hover:text-site-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-site-accent"
+              href={YANDEX_MAP_LOCATION_URL}
               rel="noopener noreferrer"
               target="_blank"
             >

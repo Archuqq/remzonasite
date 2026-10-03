@@ -58,16 +58,16 @@ export function MapEmbed({ mapUrl, fallbackUrl }: MapEmbedProps) {
   }, [mapUrl]);
 
   return (
-    <div className="relative h-[450px] overflow-hidden bg-section-alt md:h-[520px] lg:h-[560px]">
+    <div className="relative h-[450px] overflow-hidden rounded-md border border-white/10 bg-[#0b1115] md:h-[520px] lg:h-[560px]">
       <div
         aria-busy={status === "loading"}
         className="h-full w-full"
       >
         {status !== "loaded" ? (
-          <div className="flex h-full items-center justify-center p-6 text-center text-sm text-muted">
+          <div className="flex h-full items-center justify-center p-6 text-center text-sm text-site-muted">
             {status === "error" ? (
               <a
-                className="font-semibold text-ink underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+                className="font-semibold text-site-accent underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-site-accent"
                 href={fallbackUrl}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -87,7 +87,7 @@ export function MapEmbed({ mapUrl, fallbackUrl }: MapEmbedProps) {
       </div>
       {status === "loaded" ? null : (
         <a
-          className="absolute bottom-4 right-4 inline-flex min-h-11 items-center rounded-md border border-line bg-surface px-4 text-sm font-semibold text-ink shadow-[0_8px_24px_rgba(21,25,28,0.08)] hover:bg-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          className="absolute bottom-4 right-4 inline-flex min-h-11 items-center rounded-md border border-white/20 bg-site-bg/95 px-4 text-sm font-semibold text-site-text hover:border-site-accent hover:text-site-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-site-accent"
           href={fallbackUrl}
           rel="noopener noreferrer"
           target="_blank"

@@ -1,117 +1,82 @@
-import { preload } from "react-dom";
-import { Award, Gauge, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Settings, ShieldCheck, UsersRound } from "lucide-react";
 import { Icon } from "@/components/ui/Icon";
-import { PhoneLink } from "@/components/ui/PhoneLink";
-import { HERO_BLUR_DATA_URL } from "@/lib/hero-blur";
 
-type HeroProps = {
-  phone: string;
-  phoneHref: string;
-};
-
-const imageWidths = [640, 1024, 1600, 1920] as const;
-const avifSrcSet = imageWidths
-  .map((width) => `/images/hero-${width}.avif ${width}w`)
-  .join(", ");
-const webpSrcSet = imageWidths
-  .map((width) => `/images/hero-${width}.webp ${width}w`)
-  .join(", ");
-const imageSizes = "100vw";
-
-const advantages = [
-  { icon: Gauge, label: "Официальное оборудование" },
-  { icon: Award, label: "Опытные мастера с сертификатами" },
-  { icon: ShieldCheck, label: "Гарантия на все работы" },
+const proofPoints = [
+  { icon: ShieldCheck, title: "Гарантия", description: "на работы 12 месяцев" },
+  { icon: Settings, title: "Современное", description: "оборудование" },
+  { icon: UsersRound, title: "Опытные мастера", description: "с большим стажем" },
 ];
 
-export function Hero({ phone, phoneHref }: HeroProps) {
-  preload("/images/hero-1600.avif", {
-    as: "image",
-    type: "image/avif",
-    imageSrcSet: avifSrcSet,
-    imageSizes,
-    fetchPriority: "high",
-  });
-
+export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-bg">
-      <div className="container-site relative z-10 grid grid-cols-1 items-center gap-0 pt-8 pb-[calc(37vw+0.5rem)] sm:pb-[calc(45.45vw+1rem)] md:min-h-[570px] md:py-10 xl:min-h-[620px] xl:py-12">
-        <div className="max-w-[560px] md:w-[53%] xl:w-[48%]">
-          <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink sm:text-xs">
-            <span aria-hidden="true" className="h-px w-8 bg-accent" />
+    <section className="relative isolate min-h-[620px] overflow-hidden bg-site-bg text-site-text sm:min-h-[660px] lg:min-h-[552px]">
+      <div className="absolute inset-0">
+        <Image
+          alt="Мастер обслуживает автомобиль с открытым капотом в РЕМЗОНЕ"
+          className="object-cover object-center"
+          fill
+          preload
+          sizes="100vw"
+          src="/images/back_bmw.png"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,12,15,0.68)_0%,rgba(8,12,15,0.56)_36%,rgba(8,12,15,0.16)_70%,rgba(8,12,15,0.04)_100%)]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-site-bg/55 via-transparent to-site-bg/10"
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto flex min-h-[620px] w-full max-w-[1440px] items-center px-5 py-10 sm:min-h-[660px] sm:px-8 lg:min-h-[552px] lg:px-10 lg:py-8">
+        <div className="max-w-[780px]">
+          <p className="flex items-center gap-3 text-[11px] font-bold uppercase text-site-text sm:text-xs">
+            <span aria-hidden="true" className="h-2 w-2 rotate-45 bg-site-accent" />
             Автосервис в Серпухове
           </p>
-          <h1 className="mt-4 max-w-[560px] font-serif text-[40px] font-medium leading-[0.98] text-ink sm:mt-6 sm:text-[48px] md:text-[46px] lg:text-[58px] 2xl:text-[66px]">
-            Сервис, которому
+          <h1 className="mt-5 max-w-[760px] text-[30px] font-extrabold leading-[1.08] text-site-text sm:text-[50px] sm:leading-[1.02] lg:text-[56px]">
+            Ремонт автомобиля
             <br />
-            можно доверить
-            <br />
-            автомобиль
+            <span className="text-site-accent">без сюрпризов</span> в чеке
           </h1>
-          <p className="mt-4 max-w-[500px] text-base leading-7 text-muted sm:mt-6 sm:text-[17px]">
-            Диагностика, плановое ТО и ремонт любых иномарок и отечественных
-            авто. Называем цену до начала работ — без сюрпризов в чеке.
+          <p className="mt-5 max-w-[540px] text-sm leading-5 text-site-text/80 sm:text-base sm:leading-6">
+            Диагностика, ТО и ремонт любых иномарок и отечественных авто.
           </p>
-          <div className="mt-6 flex flex-row flex-wrap gap-2 sm:mt-8 sm:gap-3">
-            <PhoneLink
-              className="w-auto flex-1 sm:flex-none"
-              phone={phone}
-              phoneHref={phoneHref}
-              variant="primary"
-            >
-              Позвонить
-            </PhoneLink>
+          <div className="mt-8 flex flex-wrap gap-4">
             <a
-              className="inline-flex min-h-12 w-auto flex-1 items-center justify-center rounded-md border border-ink bg-transparent px-4 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-ink hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current sm:flex-none sm:px-5"
-              href="#services"
+              className="inline-flex min-h-[60px] items-center justify-center gap-5 rounded-md bg-site-accent px-7 text-sm font-bold text-white transition-colors hover:bg-white hover:text-site-bg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-site-accent"
+              href="#contacts"
             >
-              Наши услуги
+              Записаться на сервис <Icon icon={ArrowRight} size={18} />
             </a>
           </div>
-          <ul className="mt-6 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-line pt-4 sm:mt-9 sm:gap-3 sm:pt-6 xl:grid-cols-1 xl:gap-2">
-            {advantages.map(({ icon, label }) => (
+          <ul className="mt-10 grid max-w-[790px] grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-0">
+            {proofPoints.map((item, index) => (
               <li
-                className="flex items-center gap-2 text-xs leading-4 text-ink sm:gap-3 sm:text-sm sm:leading-5"
-                key={label}
+                className={`flex items-center gap-3 border-l-2 border-site-accent pl-3 sm:border-l-0 sm:px-6 sm:pl-6 first:sm:pl-0 last:pr-0 ${index < proofPoints.length - 1 ? "sm:border-r sm:border-white/20" : ""}`}
+                key={item.title}
               >
-                <Icon className="shrink-0 text-muted" icon={icon} size={17} />
-                <span>{label}</span>
+                <Icon
+                  aria-hidden="true"
+                  className="shrink-0 text-site-text"
+                  icon={item.icon}
+                  size={30}
+                />
+                <span className="text-xs leading-4">
+                  <strong className="block font-bold text-site-text">
+                    {item.title}
+                  </strong>
+                  <span className="text-site-text/75">{item.description}</span>
+                </span>
               </li>
             ))}
           </ul>
+          <p className="mt-5 text-[11px] font-semibold text-site-text/70">
+            Работаем с автомобилями любых марок
+          </p>
         </div>
-      </div>
-      <div
-        className="absolute inset-x-0 bottom-0 aspect-[2.2/1] overflow-hidden bg-section-alt md:inset-y-0 md:left-[45%] md:right-0 md:aspect-auto"
-        style={{
-          backgroundImage: `url(${HERO_BLUR_DATA_URL})`,
-          backgroundSize: "cover",
-        }}
-      >
-        <picture className="absolute inset-0 block h-full w-full">
-          <source type="image/avif" srcSet={avifSrcSet} sizes={imageSizes} />
-          <source type="image/webp" srcSet={webpSrcSet} sizes={imageSizes} />
-          <img
-            alt="Mercedes в автосервисе РЕМЗОНА"
-            className="h-full w-full object-cover object-[48%_center]"
-            decoding="async"
-            fetchPriority="high"
-            height={1081}
-            loading="eager"
-            src="/images/hero-1600.webp"
-            srcSet={webpSrcSet}
-            sizes={imageSizes}
-            width={1920}
-          />
-        </picture>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-0 hidden w-[24%] bg-[linear-gradient(90deg,#F7F7F5_0%,rgba(247,247,245,0.86)_24%,rgba(247,247,245,0.48)_50%,rgba(247,247,245,0.12)_76%,transparent_100%)] md:block"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-bg/20 to-transparent md:hidden"
-        />
       </div>
     </section>
   );

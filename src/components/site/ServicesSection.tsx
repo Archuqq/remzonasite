@@ -16,16 +16,18 @@ export function ServicesSection({
 }: ServicesSectionProps) {
   return (
     <Section
-      className="bg-bg !pt-4 !pb-16 sm:!pt-14 sm:!pb-20"
+      className="bg-site-bg !pt-7 !pb-10 sm:!pt-10 sm:!pb-14"
+      eyebrow="Наши услуги"
+      eyebrowClassName="text-site-accent"
       id="services"
-      title="Услуги сервиса"
+      title="Чем можем помочь?"
     >
       {services.length === 0 ? (
         <p className="text-base text-muted">
           Сейчас нет опубликованных услуг. Позвоните, чтобы уточнить наличие.
         </p>
       ) : (
-        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service, index) => (
             <li className="flex h-full" key={service.id}>
               <Reveal style={{ transitionDelay: `${Math.min(index, 5) * 60}ms` }}>

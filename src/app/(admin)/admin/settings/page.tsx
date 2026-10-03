@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SettingsForm } from "@/components/admin/SettingsForm";
 import { getSettings } from "@/lib/settings";
 
@@ -15,14 +14,6 @@ export default async function AdminSettingsPage() {
       <h1 className="mt-3 font-serif text-4xl text-ink">Настройки</h1>
       <div className="mt-8">
         <SettingsForm settings={settings} />
-      </div>
-      <div className="mt-10 max-w-2xl border-t border-line">
-        <Link
-          className="flex min-h-16 items-center justify-between border-b border-line text-sm font-medium text-ink hover:underline"
-          href="/admin/settings/password"
-        >
-          Сменить пароль <span aria-hidden="true">→</span>
-        </Link>
       </div>
     </section>
   );

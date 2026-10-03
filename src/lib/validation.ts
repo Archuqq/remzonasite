@@ -55,7 +55,6 @@ export const siteSettingsSchema = z.object({
   hoursWeekend: z
     .string()
     .trim()
-    .min(1, "Укажите часы работы в выходные.")
     .max(100, "Часы работы в выходные слишком длинные."),
   yandexOrgId: z
     .string()

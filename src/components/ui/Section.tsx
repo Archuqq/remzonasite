@@ -2,6 +2,7 @@ import type { HTMLAttributes, ReactNode } from "react";
 
 type SectionProps = HTMLAttributes<HTMLElement> & {
   eyebrow?: string;
+  eyebrowClassName?: string;
   title: string;
   description?: string;
   headerAction?: ReactNode;
@@ -10,6 +11,7 @@ type SectionProps = HTMLAttributes<HTMLElement> & {
 
 export function Section({
   eyebrow,
+  eyebrowClassName,
   title,
   description,
   headerAction,
@@ -23,7 +25,9 @@ export function Section({
         <header className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-3xl">
             {eyebrow ? (
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+              <p
+                className={`text-xs font-semibold uppercase tracking-[0.16em] ${eyebrowClassName ?? "text-muted"}`}
+              >
                 {eyebrow}
               </p>
             ) : null}

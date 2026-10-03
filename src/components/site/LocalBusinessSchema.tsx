@@ -17,7 +17,9 @@ export function LocalBusinessSchema({
   settings,
 }: LocalBusinessSchemaProps) {
   const weekdays = parseHours(settings.hoursWeekdays);
-  const weekend = parseHours(settings.hoursWeekend);
+  const weekend = settings.hoursWeekend
+    ? parseHours(settings.hoursWeekend)
+    : null;
   const schema = {
     "@context": "https://schema.org",
     "@type": "AutoRepair",
@@ -37,12 +39,16 @@ export function LocalBusinessSchema({
         opens: weekdays.opens,
         closes: weekdays.closes,
       },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Saturday", "Sunday"],
-        opens: weekend.opens,
-        closes: weekend.closes,
-      },
+      ...(weekend
+        ? [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Saturday", "Sunday"],
+              opens: weekend.opens,
+              closes: weekend.closes,
+            },
+          ]
+        : []),
     ],
   };
 

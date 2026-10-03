@@ -13,7 +13,7 @@ export function ReviewsWidget({
   const reviewsUrl = `https://yandex.ru/maps/org/remzona/${encodeURIComponent(yandexOrgId)}/reviews`;
 
   return (
-    <div className="mx-auto w-full max-w-[763px] overflow-hidden rounded-lg border border-line bg-surface">
+    <div className="mx-auto w-full max-w-[763px] overflow-hidden rounded-md border border-white/10 bg-white">
       <iframe
         className="block h-[640px] w-full border-0 sm:h-[720px]"
         loading="lazy"
@@ -21,9 +21,9 @@ export function ReviewsWidget({
         src={widgetUrl}
         title="Отзывы клиентов РЕМЗОНА на Яндекс Картах"
       />
-      <div className="border-t border-line px-5 py-4 sm:px-6">
+      <div className="border-t border-line bg-surface px-5 py-4 sm:px-6">
         <a
-          className="inline-flex min-h-11 items-center text-sm font-semibold text-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+          className="inline-flex min-h-11 items-center text-sm font-semibold text-site-accent underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-site-accent"
           href={reviewsUrl}
           rel="noopener noreferrer"
           target="_blank"

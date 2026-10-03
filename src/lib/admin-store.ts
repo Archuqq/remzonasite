@@ -5,7 +5,6 @@ import { env } from "@/lib/env";
 import {
   getDataFilePath,
   readJsonFile,
-  updateJsonFile,
 } from "@/lib/json-store";
 
 export const adminFileSchema = z.object({
@@ -65,23 +64,4 @@ export async function getAdminRecord(): Promise<AdminRecord> {
     passwordHash: "invalid-admin-record",
   };
   return readJsonFile(await getAdminFilePath(), adminFileSchema, fallback);
-}
-
-export async function updateAdminPassword(
-  login: string,
-  currentPasswordHash: string,
-  nextPasswordHash: string,
-): Promise<boolean> {
-  await seedAdminFileIfMissing();
-  const filePath = await getAdminFilePath();
-  const current = await getAdminRecord();
-  return updateJsonFile(filePath, adminFileSchema, current, (admin) => {
-    if (admin.login !== login || admin.passwordHash !== currentPasswordHash) {
-      return { data: admin, result: false };
-    }
-    return {
-      data: { ...admin, passwordHash: nextPasswordHash },
-      result: true,
-    };
-  });
 }

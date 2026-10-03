@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function AdminAuthLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-bg px-5 py-12">
+    <main className="admin-theme flex min-h-screen items-center justify-center bg-bg px-5 py-12 text-ink">
       {children}
     </main>
   );

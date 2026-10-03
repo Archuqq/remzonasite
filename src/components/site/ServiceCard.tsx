@@ -1,4 +1,3 @@
-import { PhoneLink } from "@/components/ui/PhoneLink";
 import { SERVICE_IMAGE_PLACEHOLDER_URL } from "@/lib/image-constants";
 import {
   Disc3,
@@ -60,13 +59,13 @@ export function ServiceCard({
   const hasImage = src1200 !== SERVICE_IMAGE_PLACEHOLDER_URL;
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-line bg-surface transition duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(21,25,28,0.08)]">
-      <div className="relative aspect-[3/2] overflow-hidden rounded-t-lg bg-section-alt">
+    <article className="group flex h-full w-full gap-3 rounded-md border border-line bg-surface p-3 transition duration-200 hover:border-site-accent/50 hover:bg-[#141b20] sm:gap-4 sm:p-4">
+      <div className="relative size-[92px] shrink-0 overflow-hidden rounded-md bg-section-alt sm:size-32">
         {hasImage ? (
           // eslint-disable-next-line @next/next/no-img-element -- /uploads и blob-предпросмотр
           <img
             alt={imageAlt || title}
-            className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-[1.02]"
+            className="h-full w-full object-cover object-center transition duration-300 group-hover:scale-[1.06]"
             decoding="async"
             height={600}
             loading="lazy"
@@ -77,33 +76,52 @@ export function ServiceCard({
           />
         ) : (
           <div className="flex h-full items-center justify-center text-muted">
-            <Icon aria-hidden="true" icon={serviceIcon(category, title)} size={54} strokeWidth={1.3} />
+            <Icon
+              aria-hidden="true"
+              className="text-site-accent"
+              icon={serviceIcon(category, title)}
+              size={35}
+              strokeWidth={1.4}
+            />
           </div>
         )}
       </div>
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+      <div className="flex min-w-0 flex-1 flex-col py-0.5">
+        <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-site-accent">
           {category || "Категория"}
         </p>
-        <h3 className="mt-3 font-serif text-2xl font-medium text-ink">
+        <h3 className="mt-1 text-sm font-bold leading-tight text-site-text sm:text-base">
           {title || "Название"}
         </h3>
-        <p className="mt-3 flex-1 text-sm leading-6 text-muted">
+        <p className="mt-1.5 line-clamp-2 flex-1 text-[11px] leading-4 text-site-muted sm:text-xs">
           {description || "Описание услуги"}
         </p>
-        <div className="mt-5 flex items-center justify-between gap-3 text-sm text-muted">
-          <span>{price || "Цена"}</span>
-          <span>{duration || "Срок"}</span>
+        <div className="mt-2 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-2">
+          <div className="min-w-0">
+            <span className="block text-sm font-extrabold text-site-accent sm:text-base">
+              {price || "Цена"}
+            </span>
+            <span className="mt-0.5 block text-[10px] text-site-muted">
+              {duration || "Срок"}
+            </span>
+          </div>
+          {preview ? (
+            <span
+              aria-hidden="true"
+              className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-md bg-site-accent px-3 text-sm font-semibold text-white"
+            >
+              Записаться
+            </span>
+          ) : (
+            <a
+              aria-label={`Записаться на услугу «${title}» по телефону ${phone}`}
+              className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-md bg-site-accent px-3 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-site-bg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-site-accent"
+              href={phoneHref}
+            >
+              Записаться
+            </a>
+          )}
         </div>
-        <PhoneLink
-          className="mt-5 w-fit group-hover:bg-dark"
-          phone={phone}
-          phoneHref={phoneHref}
-          preview={preview}
-          variant="primary"
-        >
-          Позвонить
-        </PhoneLink>
       </div>
     </article>
   );

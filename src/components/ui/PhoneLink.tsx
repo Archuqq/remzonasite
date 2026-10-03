@@ -2,7 +2,7 @@ import type { MouseEventHandler, ReactNode } from "react";
 import { Phone } from "lucide-react";
 import { Icon } from "@/components/ui/Icon";
 
-type PhoneLinkVariant = "text" | "primary" | "secondary" | "light";
+type PhoneLinkVariant = "text" | "primary" | "secondary" | "light" | "accent";
 
 type PhoneLinkProps = {
   phone: string;
@@ -24,6 +24,8 @@ const variants: Record<PhoneLinkVariant, string> = {
     "rounded-md border border-ink px-5 text-ink hover:bg-ink hover:text-white",
   light:
     "rounded-md border border-white bg-white px-5 text-dark hover:bg-bg hover:text-dark",
+  accent:
+    "rounded-md bg-site-accent px-5 text-white hover:bg-white hover:text-site-bg",
 };
 
 export function PhoneLink({

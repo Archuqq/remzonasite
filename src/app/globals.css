@@ -11,6 +11,10 @@
   --color-signal: #c8893f;
   --color-dark: #151a1d;
   --color-section-alt: #f2f2f0;
+  --color-site-bg: #080c0f;
+  --color-site-text: #f4f6f7;
+  --color-site-muted: #9ca5aa;
+  --color-site-accent: #ff6a00;
 
   --font-sans: var(--font-manrope);
   --font-serif: var(--font-cormorant);
@@ -18,10 +22,10 @@
   --radius-md: 12px;
   --radius-lg: 16px;
 
-  --container-site: 1360px;
+  --container-site: 1440px;
 }
 
-/* Контейнер: max 1360 px, боковые отступы из спецификации */
+/* Контейнер сайта выравнивает секции с текстом Hero. */
 @utility container-site {
   margin-inline: auto;
   width: 100%;
@@ -37,11 +41,11 @@
   }
 
   @variant xl {
-    padding-inline: 60px;
+    padding-inline: 40px;
   }
 
   @media (min-width: 1440px) {
-    padding-inline: 80px;
+    padding-inline: 40px;
   }
 }
 
@@ -54,6 +58,112 @@ html {
 body {
   background-color: var(--color-bg);
   color: var(--color-ink);
+}
+
+.site-theme {
+  --color-bg: #080c0f;
+  --color-surface: #11171b;
+  --color-ink: #f4f6f7;
+  --color-muted: #9ca5aa;
+  --color-line: #293238;
+  --color-accent: #ff6a00;
+  --color-signal: #ff6a00;
+  --color-dark: #080c0f;
+  --color-section-alt: #0d1317;
+  --color-site-bg: #080c0f;
+  --color-site-text: #f4f6f7;
+  --color-site-muted: #9ca5aa;
+  --color-site-accent: #ff6a00;
+  color: var(--color-ink);
+  color-scheme: dark;
+  background-color: var(--color-bg);
+}
+
+.admin-theme {
+  --color-bg: #080c0f;
+  --color-surface: #11171b;
+  --color-ink: #f4f6f7;
+  --color-muted: #9ca5aa;
+  --color-line: #293238;
+  --color-accent: #ff6a00;
+  --color-signal: #ff6a00;
+  --color-dark: #e85c00;
+  --color-section-alt: #0d1317;
+  color: var(--color-ink);
+  color-scheme: dark;
+  background-color: var(--color-bg);
+}
+
+@layer utilities {
+  .site-theme .bg-bg {
+    background-color: #080c0f;
+  }
+
+  .site-theme .bg-surface {
+    background-color: #11171b;
+  }
+
+  .site-theme .bg-section-alt {
+    background-color: #0d1317;
+  }
+
+  .site-theme .bg-ink {
+    background-color: #ff6a00;
+  }
+
+  .site-theme .text-ink {
+    color: #f4f6f7;
+  }
+
+  .site-theme .text-muted {
+    color: #9ca5aa;
+  }
+
+  .site-theme .border-line {
+    border-color: #293238;
+  }
+
+  .admin-theme .bg-bg {
+    background-color: #080c0f;
+  }
+
+  .admin-theme .bg-surface {
+    background-color: #11171b;
+  }
+
+  .admin-theme .bg-section-alt,
+  .admin-theme .bg-white {
+    background-color: #0d1317;
+  }
+
+  .admin-theme .bg-ink {
+    background-color: #ff6a00;
+  }
+
+  .admin-theme .text-ink {
+    color: #f4f6f7;
+  }
+
+  .admin-theme .text-muted {
+    color: #9ca5aa;
+  }
+
+  .admin-theme .border-line {
+    border-color: #293238;
+  }
+
+  .admin-theme input:not([type="checkbox"]):not([type="file"]),
+  .admin-theme textarea,
+  .admin-theme select {
+    background-color: #0d1317;
+    border-color: #293238;
+    color: #f4f6f7;
+    color-scheme: dark;
+  }
+
+  .admin-theme input[type="checkbox"] {
+    accent-color: #ff6a00;
+  }
 }
 
 /* Конструктор Яндекс.Карт задаёт 763×407 inline; растягиваем его внутри адаптивного host. */

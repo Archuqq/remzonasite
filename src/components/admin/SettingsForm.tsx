@@ -91,8 +91,10 @@ export function SettingsForm({ settings: initialSettings }: SettingsFormProps) {
           }
         />
         <Field
-          label="Часы работы в выходные"
+          label="Часы работы в выходные (необязательно)"
           name="hoursWeekend"
+          placeholder="Оставьте пустым, если не работаете"
+          required={false}
           value={settings.hoursWeekend}
           onChange={(hoursWeekend) =>
             setSettings((current) => ({ ...current, hoursWeekend }))
@@ -166,13 +168,15 @@ function Field({
   name,
   value,
   onChange,
+  required = true,
   ...inputProps
 }: {
   label: string;
   name: string;
   value: string;
   onChange: (value: string) => void;
-} & Omit<InputHTMLAttributes<HTMLInputElement>, "name" | "value" | "onChange">) {
+  required?: boolean;
+} & Omit<InputHTMLAttributes<HTMLInputElement>, "name" | "value" | "onChange" | "required">) {
   return (
     <label className="block space-y-2 text-sm font-medium text-ink">
       <span>{label}</span>
@@ -181,7 +185,7 @@ function Field({
         className="min-h-12 w-full rounded-md border border-line bg-white px-4 text-base outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/15"
         name={name}
         onChange={(event) => onChange(event.target.value)}
-        required
+        required={required}
         value={value}
       />
     </label>

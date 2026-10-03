@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { slugifyTitle } from "../src/lib/slug";
-import { serviceFieldsSchema } from "../src/lib/validation";
+import {
+  serviceFieldsSchema,
+  siteSettingsSchema,
+} from "../src/lib/validation";
 
 const validService = {
   category: "ДИАГНОСТИКА",
@@ -51,3 +54,15 @@ assert.equal(
   false,
 );
 console.log("PASS service field boundaries and publication type validation");
+
+const validSettings = {
+  phone: "+7 (900) 000-00-00",
+  address: "г. Серпухов, Советская улица, 2кА",
+  hoursWeekdays: "Пн–Пт: 09:00–20:00",
+  hoursWeekend: "",
+  yandexOrgId: "73425839561",
+  reviewsEnabled: true,
+  siteName: "РЕМЗОНА",
+};
+assert.equal(siteSettingsSchema.safeParse(validSettings).success, true);
+console.log("PASS weekend hours may be left blank");

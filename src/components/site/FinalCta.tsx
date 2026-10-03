@@ -1,5 +1,4 @@
-import { ArrowRight } from "lucide-react";
-import { Icon } from "@/components/ui/Icon";
+import Image from "next/image";
 import { PhoneLink } from "@/components/ui/PhoneLink";
 
 type FinalCtaProps = {
@@ -7,46 +6,44 @@ type FinalCtaProps = {
   phoneHref: string;
 };
 
-const imageSrcSet =
-  "/images/hero-640.webp 640w, /images/hero-1024.webp 1024w, /images/hero-1600.webp 1600w";
-
 export function FinalCta({ phone, phoneHref }: FinalCtaProps) {
   return (
-    <section className="overflow-hidden bg-dark text-white">
-      <div className="container-site grid min-h-[420px] items-stretch gap-10 py-16 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-0">
-        <div className="flex flex-col justify-center lg:py-24">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
-            РЕМЗОНА
+    <section className="relative isolate overflow-hidden bg-site-bg" id="call">
+      <Image
+        alt=""
+        className="object-cover object-[62%_center] opacity-35"
+        fill
+        sizes="100vw"
+        src="/images/back_bmw.png"
+      />
+      <div aria-hidden="true" className="absolute inset-0 bg-site-bg/65" />
+      <div className="container-site relative grid min-h-[300px] gap-6 py-12 sm:py-16 lg:min-h-[360px] lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="max-w-2xl">
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-site-accent">
+            РЕМЗОНА · СЕРПУХОВ
           </p>
-          <h2 className="mt-5 max-w-xl font-serif text-4xl font-medium leading-[1.02] sm:text-5xl">
-            Позвоните нам уже сегодня
+          <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-site-text sm:text-4xl lg:text-5xl">
+            Автомобиль требует внимания?
           </h2>
-          <p className="mt-5 max-w-lg text-base leading-7 text-white/70">
-            Позвоните — мы ответим на вопросы и подберём удобное время визита.
+          <p className="mt-3 max-w-xl text-sm leading-6 text-site-muted sm:text-base">
+            Позвоните — разберёмся с причиной и предложим варианты ремонта.
           </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-4">
           <PhoneLink
-            className="mt-8 w-fit"
+            className="min-h-12 px-5"
             phone={phone}
             phoneHref={phoneHref}
-            variant="light"
+            variant="accent"
           >
-            Позвонить <Icon icon={ArrowRight} size={16} />
+            Позвонить
           </PhoneLink>
-        </div>
-        <div className="relative min-h-[240px] overflow-hidden lg:min-h-[420px]">
-          {/* eslint-disable-next-line @next/next/no-img-element -- responsive local hero crop */}
-          <img
-            alt="Автомобиль в сервисе РЕМЗОНА"
-            className="h-full w-full object-cover object-[62%_center] opacity-55"
-            decoding="async"
-            height={901}
-            loading="lazy"
-            sizes="(min-width: 1024px) 55vw, 100vw"
-            src="/images/hero-1024.webp"
-            srcSet={imageSrcSet}
-            width={1600}
-          />
-          <div aria-hidden="true" className="absolute inset-0 bg-dark/35" />
+          <a
+            className="text-sm font-bold text-site-text underline decoration-site-accent underline-offset-4"
+            href={phoneHref}
+          >
+            {phone}
+          </a>
         </div>
       </div>
     </section>

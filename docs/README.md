@@ -19,5 +19,6 @@
 | 12  | Деплой приложения без СУБД                       | [stage-12-deploy.md](stage-12-deploy.md) | готово |
 | 13  | Переход с MySQL на PostgreSQL                   | [stage-13-postgresql-migration.md](stage-13-postgresql-migration.md) | готово |
 | 14  | JSON-хранилище вместо СУБД                      | [stage-14-json-storage.md](stage-14-json-storage.md) | готово |
+| 15  | Тёмный automotive редизайн                      | [stage-15-design-redesign.md](stage-15-design-redesign.md) | готово |
 
 Этапы 0–13 сохраняют исторические детали разработки, включая прежние SQL-варианты. Текущий источник данных — JSON-файлы; используйте [карту проекта](PROJECT.md), этап 14 и [инструкцию по деплою](stage-12-deploy.md).
